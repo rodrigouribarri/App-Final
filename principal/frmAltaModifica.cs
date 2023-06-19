@@ -69,13 +69,23 @@ namespace TPFinalNivel2_RodrigoURIBARRI
                                 }
                                 else
                                 {
-                                    negocio.agregar(articulo);
-                                    MessageBox.Show("¡El artículo fue agregado exitosamente!");
+                                    if (negocio.ExisteArticulo(articulo))
+                                    {
+                                        MessageBox.Show("Ya existe el artículo");
+                                    }
+                                    else
+                                    {
+                                        negocio.agregar(articulo);
+                                        MessageBox.Show("¡El artículo fue agregado exitosamente!");
+                                    }
+
                                 }
                                 if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
                                     File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-catalogo-app"] + archivo.SafeFileName);
+
                                 Close();
-                            }
+
+                            }    
                         }
                         else
                             MessageBox.Show("El campo precio solo admite números");
@@ -86,11 +96,13 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             {
                 MessageBox.Show(ex.ToString());
             }
+            Program.frmArticulosPrincipal.Show();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+            Program.frmArticulosPrincipal.Show();
         }
 
         private void frmAltaModifica_Load(object sender, EventArgs e)
@@ -130,7 +142,6 @@ namespace TPFinalNivel2_RodrigoURIBARRI
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void btnagregarImagen_Click(object sender, EventArgs e)
         {
             archivo = new OpenFileDialog();

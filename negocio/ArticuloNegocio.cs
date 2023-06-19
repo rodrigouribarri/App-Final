@@ -12,10 +12,12 @@ namespace negocio
     public class ArticuloNegocio
     {
         AccesoDatos datos = new AccesoDatos();
+        private List<Articulo> lista = new List<Articulo>();
+
         public List<Articulo> listar()
         {
-            List<Articulo> lista = new List<Articulo>();
-           // AccesoDatos datos = new AccesoDatos();
+            //List<Articulo> lista = new List<Articulo>();
+          
             try
             {
                 datos.setearConsulta("SELECT A.Id Id, Codigo, Nombre, C.Descripcion Categoria, M.Descripcion Marca,Precio, A.Descripcion, ImagenUrl, IdMarca, IdCategoria from Articulos A, CATEGORIAS C, Marcas M where A.IdMarca = M.Id and A.IdCategoria = C.Id");
@@ -31,7 +33,7 @@ namespace negocio
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Categoria = new Categoria();
-                    aux.Categoria.Descipcion = (string)datos.Lector["Categoria"];
+                    aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
                     aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
                     aux.Marca = new Marca();
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
@@ -52,7 +54,6 @@ namespace negocio
         }
         public void eliminar(int id)
         {
-            //AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("delete from articulos where Id = @id");
@@ -63,10 +64,13 @@ namespace negocio
             {
                 throw ex;
             }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
         public void agregar(Articulo nuevo)
         {
-            //AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("insert into ARTICULOS(Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio) values('"+nuevo.Codigo+"', '"+nuevo.Nombre+"', '"+ nuevo.Descripcion+"', @IdMarca, @IdCategoria, @UrlImagen, @Precio)");
@@ -78,18 +82,15 @@ namespace negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
             {
                 datos.cerrarConexion();
             }
-
         }
         public void modificar(Articulo modificado)
         {
-            //AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, ImagenUrl = @urlimagen, IdMarca = @marca, IdCategoria = @categoria, Precio = @precio where Id = @id");
@@ -109,14 +110,15 @@ namespace negocio
             }
             finally
             {
-                datos.ejecutarAccion();
+                datos.cerrarConexion();
             }
-
         }
         public List<Articulo> filtrar(string campo, string criterio, string filtro)
         {
             List<Articulo> lista = new List<Articulo>();
-            //AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
+            string x = campo.ToString();
+
             try
             {
                 string consulta = "SELECT A.Id Id, Codigo, Nombre, C.Descripcion Categoria, M.Descripcion Marca,Precio, A.Descripcion, ImagenUrl, IdMarca, IdCategoria from Articulos A, CATEGORIAS C, Marcas M where A.IdMarca = M.Id and A.IdCategoria = C.Id and ";
@@ -135,19 +137,22 @@ namespace negocio
                             break;
                     }
                 }
-                else if (campo == "Nombre" || campo == "Marca" || campo == "Código" || campo == "Categoría")
+                else if (campo == "Marca")
                 {
-                    string x = campo.ToString();
+                    x = "M.Descripcion";
+                    consulta += x + "= '" + filtro + "'";
+                }
+                else if(campo == "Categoría")
+                {
+                    x = "C.Descripcion";
+                    consulta += x + "= '" + filtro + "'";
+                }
+                else if (campo == "Nombre" || campo == "Código")
+                {
                     switch (x)
                     {
-                        case "Marca":
-                            x = "M.Descripcion";
-                            break;
                         case "Código":
                             x = "Codigo";
-                            break;
-                        case "Categoría":
-                            x = "C.Descripcion";
                             break;
 
                     }
@@ -164,6 +169,7 @@ namespace negocio
                             break;
                     }
                 }
+
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
@@ -181,18 +187,43 @@ namespace negocio
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
                     aux.Categoria = new Categoria();
                     aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
-                    aux.Categoria.Descipcion = (string)datos.Lector["Categoria"];
-
+                    aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
                     lista.Add(aux);
                 }
+
                 return lista;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-           
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public bool ExisteArticulo(Articulo evaluado)
+        {
+            try
+            {
+                datos.setearConsulta("select codigo, nombre from ARTICULOS");
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    if (evaluado.Nombre == (string)datos.Lector["nombre"] && evaluado.Codigo == (string)datos.Lector["codigo"])
+                        return true;
+                }
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+            return false;
         }
     }
 }

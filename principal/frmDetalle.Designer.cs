@@ -46,17 +46,22 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             this.txtnombre = new System.Windows.Forms.TextBox();
             this.txtcodigo = new System.Windows.Forms.TextBox();
             this.txtid = new System.Windows.Forms.TextBox();
+            this.pnlTop = new System.Windows.Forms.Panel();
+            this.pnlRight = new System.Windows.Forms.Panel();
+            this.pnlDown = new System.Windows.Forms.Panel();
+            this.pnlLeft = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pcbArticulo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnVolver
             // 
+            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVolver.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolver.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnVolver.Location = new System.Drawing.Point(379, 394);
+            this.btnVolver.Location = new System.Drawing.Point(234, 437);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(75, 23);
-            this.btnVolver.TabIndex = 24;
+            this.btnVolver.Size = new System.Drawing.Size(75, 27);
+            this.btnVolver.TabIndex = 7;
             this.btnVolver.TabStop = false;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
@@ -64,9 +69,9 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             // 
             // pcbArticulo
             // 
-            this.pcbArticulo.Location = new System.Drawing.Point(447, 68);
+            this.pcbArticulo.Location = new System.Drawing.Point(315, 74);
             this.pcbArticulo.Name = "pcbArticulo";
-            this.pcbArticulo.Size = new System.Drawing.Size(195, 285);
+            this.pcbArticulo.Size = new System.Drawing.Size(195, 329);
             this.pcbArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbArticulo.TabIndex = 32;
             this.pcbArticulo.TabStop = false;
@@ -76,7 +81,7 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             this.lblArticuloDetallado.AutoSize = true;
             this.lblArticuloDetallado.Font = new System.Drawing.Font("Arial Unicode MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArticuloDetallado.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblArticuloDetallado.Location = new System.Drawing.Point(293, 33);
+            this.lblArticuloDetallado.Location = new System.Drawing.Point(161, 33);
             this.lblArticuloDetallado.Name = "lblArticuloDetallado";
             this.lblArticuloDetallado.Size = new System.Drawing.Size(233, 18);
             this.lblArticuloDetallado.TabIndex = 31;
@@ -87,7 +92,7 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             this.lblprecio.AutoSize = true;
             this.lblprecio.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblprecio.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblprecio.Location = new System.Drawing.Point(189, 321);
+            this.lblprecio.Location = new System.Drawing.Point(57, 366);
             this.lblprecio.Name = "lblprecio";
             this.lblprecio.Size = new System.Drawing.Size(46, 16);
             this.lblprecio.TabIndex = 30;
@@ -98,7 +103,7 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             this.lblmarca.AutoSize = true;
             this.lblmarca.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblmarca.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblmarca.Location = new System.Drawing.Point(190, 210);
+            this.lblmarca.Location = new System.Drawing.Point(58, 238);
             this.lblmarca.Name = "lblmarca";
             this.lblmarca.Size = new System.Drawing.Size(45, 16);
             this.lblmarca.TabIndex = 29;
@@ -109,7 +114,7 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             this.lblcategoria.AutoSize = true;
             this.lblcategoria.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblcategoria.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblcategoria.Location = new System.Drawing.Point(169, 177);
+            this.lblcategoria.Location = new System.Drawing.Point(37, 200);
             this.lblcategoria.Name = "lblcategoria";
             this.lblcategoria.Size = new System.Drawing.Size(65, 16);
             this.lblcategoria.TabIndex = 28;
@@ -120,7 +125,7 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             this.lbldescripcion.AutoSize = true;
             this.lbldescripcion.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbldescripcion.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lbldescripcion.Location = new System.Drawing.Point(159, 287);
+            this.lbldescripcion.Location = new System.Drawing.Point(27, 327);
             this.lbldescripcion.Name = "lbldescripcion";
             this.lbldescripcion.Size = new System.Drawing.Size(76, 16);
             this.lbldescripcion.TabIndex = 27;
@@ -131,7 +136,7 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             this.lblnombre.AutoSize = true;
             this.lblnombre.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblnombre.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblnombre.Location = new System.Drawing.Point(179, 144);
+            this.lblnombre.Location = new System.Drawing.Point(47, 162);
             this.lblnombre.Name = "lblnombre";
             this.lblnombre.Size = new System.Drawing.Size(56, 16);
             this.lblnombre.TabIndex = 26;
@@ -142,7 +147,7 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             this.lblcodigo.AutoSize = true;
             this.lblcodigo.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblcodigo.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblcodigo.Location = new System.Drawing.Point(186, 111);
+            this.lblcodigo.Location = new System.Drawing.Point(54, 123);
             this.lblcodigo.Name = "lblcodigo";
             this.lblcodigo.Size = new System.Drawing.Size(51, 16);
             this.lblcodigo.TabIndex = 25;
@@ -153,7 +158,7 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             this.lblid.AutoSize = true;
             this.lblid.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblid.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblid.Location = new System.Drawing.Point(213, 78);
+            this.lblid.Location = new System.Drawing.Point(81, 85);
             this.lblid.Name = "lblid";
             this.lblid.Size = new System.Drawing.Size(21, 16);
             this.lblid.TabIndex = 23;
@@ -161,80 +166,135 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             // 
             // txtprecio
             // 
+            this.txtprecio.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.txtprecio.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtprecio.Location = new System.Drawing.Point(241, 310);
+            this.txtprecio.Location = new System.Drawing.Point(109, 353);
             this.txtprecio.Multiline = true;
             this.txtprecio.Name = "txtprecio";
-            this.txtprecio.Size = new System.Drawing.Size(200, 26);
-            this.txtprecio.TabIndex = 22;
+            this.txtprecio.ReadOnly = true;
+            this.txtprecio.Size = new System.Drawing.Size(200, 29);
+            this.txtprecio.TabIndex = 6;
             this.txtprecio.TabStop = false;
             // 
             // txtcategoria
             // 
+            this.txtcategoria.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.txtcategoria.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcategoria.Location = new System.Drawing.Point(241, 167);
+            this.txtcategoria.Location = new System.Drawing.Point(109, 188);
             this.txtcategoria.Multiline = true;
             this.txtcategoria.Name = "txtcategoria";
-            this.txtcategoria.Size = new System.Drawing.Size(200, 26);
-            this.txtcategoria.TabIndex = 19;
+            this.txtcategoria.ReadOnly = true;
+            this.txtcategoria.Size = new System.Drawing.Size(200, 29);
+            this.txtcategoria.TabIndex = 3;
             this.txtcategoria.TabStop = false;
             // 
             // txtmarca
             // 
+            this.txtmarca.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.txtmarca.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtmarca.Location = new System.Drawing.Point(241, 200);
+            this.txtmarca.Location = new System.Drawing.Point(109, 226);
             this.txtmarca.Multiline = true;
             this.txtmarca.Name = "txtmarca";
-            this.txtmarca.Size = new System.Drawing.Size(200, 26);
-            this.txtmarca.TabIndex = 20;
+            this.txtmarca.ReadOnly = true;
+            this.txtmarca.Size = new System.Drawing.Size(200, 29);
+            this.txtmarca.TabIndex = 4;
             this.txtmarca.TabStop = false;
             // 
             // txtdescripcion
             // 
             this.txtdescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtdescripcion.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.txtdescripcion.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdescripcion.Location = new System.Drawing.Point(241, 233);
+            this.txtdescripcion.Location = new System.Drawing.Point(109, 265);
             this.txtdescripcion.Multiline = true;
             this.txtdescripcion.Name = "txtdescripcion";
-            this.txtdescripcion.Size = new System.Drawing.Size(200, 70);
-            this.txtdescripcion.TabIndex = 21;
+            this.txtdescripcion.ReadOnly = true;
+            this.txtdescripcion.Size = new System.Drawing.Size(200, 80);
+            this.txtdescripcion.TabIndex = 5;
             this.txtdescripcion.TabStop = false;
             // 
             // txtnombre
             // 
+            this.txtnombre.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.txtnombre.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnombre.Location = new System.Drawing.Point(241, 134);
+            this.txtnombre.Location = new System.Drawing.Point(109, 150);
             this.txtnombre.Multiline = true;
             this.txtnombre.Name = "txtnombre";
-            this.txtnombre.Size = new System.Drawing.Size(200, 26);
-            this.txtnombre.TabIndex = 18;
+            this.txtnombre.ReadOnly = true;
+            this.txtnombre.Size = new System.Drawing.Size(200, 29);
+            this.txtnombre.TabIndex = 2;
             this.txtnombre.TabStop = false;
             // 
             // txtcodigo
             // 
+            this.txtcodigo.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.txtcodigo.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcodigo.Location = new System.Drawing.Point(241, 101);
+            this.txtcodigo.Location = new System.Drawing.Point(109, 112);
             this.txtcodigo.Multiline = true;
             this.txtcodigo.Name = "txtcodigo";
-            this.txtcodigo.Size = new System.Drawing.Size(200, 26);
-            this.txtcodigo.TabIndex = 17;
+            this.txtcodigo.ReadOnly = true;
+            this.txtcodigo.Size = new System.Drawing.Size(200, 29);
+            this.txtcodigo.TabIndex = 1;
             this.txtcodigo.TabStop = false;
             // 
             // txtid
             // 
+            this.txtid.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.txtid.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtid.Location = new System.Drawing.Point(241, 68);
+            this.txtid.Location = new System.Drawing.Point(109, 74);
             this.txtid.Multiline = true;
             this.txtid.Name = "txtid";
-            this.txtid.Size = new System.Drawing.Size(200, 26);
-            this.txtid.TabIndex = 16;
+            this.txtid.ReadOnly = true;
+            this.txtid.Size = new System.Drawing.Size(200, 29);
+            this.txtid.TabIndex = 0;
             this.txtid.TabStop = false;
+            // 
+            // pnlTop
+            // 
+            this.pnlTop.BackColor = System.Drawing.Color.DarkBlue;
+            this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlTop.Name = "pnlTop";
+            this.pnlTop.Size = new System.Drawing.Size(550, 2);
+            this.pnlTop.TabIndex = 33;
+            // 
+            // pnlRight
+            // 
+            this.pnlRight.BackColor = System.Drawing.Color.DarkBlue;
+            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlRight.Location = new System.Drawing.Point(0, 2);
+            this.pnlRight.Name = "pnlRight";
+            this.pnlRight.Size = new System.Drawing.Size(2, 518);
+            this.pnlRight.TabIndex = 34;
+            // 
+            // pnlDown
+            // 
+            this.pnlDown.BackColor = System.Drawing.Color.DarkBlue;
+            this.pnlDown.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlDown.Location = new System.Drawing.Point(2, 518);
+            this.pnlDown.Name = "pnlDown";
+            this.pnlDown.Size = new System.Drawing.Size(548, 2);
+            this.pnlDown.TabIndex = 35;
+            // 
+            // pnlLeft
+            // 
+            this.pnlLeft.BackColor = System.Drawing.Color.DarkBlue;
+            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlLeft.Location = new System.Drawing.Point(548, 2);
+            this.pnlLeft.Name = "pnlLeft";
+            this.pnlLeft.Size = new System.Drawing.Size(2, 516);
+            this.pnlLeft.TabIndex = 36;
             // 
             // frmDetalle
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(550, 520);
+            this.Controls.Add(this.pnlLeft);
+            this.Controls.Add(this.pnlDown);
+            this.Controls.Add(this.pnlRight);
+            this.Controls.Add(this.pnlTop);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.pcbArticulo);
             this.Controls.Add(this.lblArticuloDetallado);
@@ -252,8 +312,10 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             this.Controls.Add(this.txtnombre);
             this.Controls.Add(this.txtcodigo);
             this.Controls.Add(this.txtid);
+            this.Font = new System.Drawing.Font("Arial Unicode MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmDetalle";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.pcbArticulo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -279,5 +341,9 @@ namespace TPFinalNivel2_RodrigoURIBARRI
         private System.Windows.Forms.TextBox txtnombre;
         private System.Windows.Forms.TextBox txtcodigo;
         private System.Windows.Forms.TextBox txtid;
+        private System.Windows.Forms.Panel pnlTop;
+        private System.Windows.Forms.Panel pnlRight;
+        private System.Windows.Forms.Panel pnlDown;
+        private System.Windows.Forms.Panel pnlLeft;
     }
 }

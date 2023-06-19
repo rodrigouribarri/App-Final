@@ -13,7 +13,7 @@ namespace TPFinalNivel2_RodrigoURIBARRI
         {
             foreach (char caracter in cadena)
             {
-                if (!(char.IsNumber(caracter)))
+                if (char.IsLetter(caracter))
                     return false;
             }
             return true;

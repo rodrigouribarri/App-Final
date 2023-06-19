@@ -10,13 +10,14 @@ namespace TPFinalNivel2_RodrigoURIBARRI
     {
         /// <summary>
         /// Punto de entrada principal para la aplicación.
-        /// </summary>
+        /// </summary> 
+        public static frmArticulosPrincipal frmArticulosPrincipal;  
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmArticulosPrincipal());
+            Application.Run(frmArticulosPrincipal = new frmArticulosPrincipal());
         }
     }
 }

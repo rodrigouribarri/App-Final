@@ -80,6 +80,7 @@ namespace TPFinalNivel2_RodrigoURIBARRI
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            Program.frmArticulosPrincipal.Hide();
             frmAltaModifica alta = new frmAltaModifica();
             alta.ShowDialog();
             cargar();
@@ -88,11 +89,26 @@ namespace TPFinalNivel2_RodrigoURIBARRI
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Articulo seleccionado;
-            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            try
+            {
+                if(dgvArticulos.CurrentRow != null)
+                {
+                    Program.frmArticulosPrincipal.Hide();
+                    seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                    frmAltaModifica modificar = new frmAltaModifica(seleccionado);
+                    modificar.ShowDialog();
+                    cargar();
+                }
+                else
+                {
+                    MessageBox.Show("No se ha seleccionado ningún artículo");
+                }
+            }
+            catch (Exception ex)
+            {
 
-            frmAltaModifica modificar = new frmAltaModifica(seleccionado);
-            modificar.ShowDialog();
-            cargar();
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -101,13 +117,21 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                DialogResult respuesta = MessageBox.Show("Si elimina el artículo es posible que no pueda recuperarlo. ¿Realmente desea eliminar el artículo seleccionado?", "Eliminando", MessageBoxButtons.YesNo);
-                if(respuesta == DialogResult.Yes)
+                if(dgvArticulos.CurrentRow != null)
                 {
                     seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                    negocio.eliminar(seleccionado.Id);
-                    cargar();
+                    DialogResult respuesta = MessageBox.Show("Si elimina el artículo es posible que no pueda recuperarlo. ¿Realmente desea eliminar el artículo seleccionado?", "Eliminando", MessageBoxButtons.YesNo);
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        negocio.eliminar(seleccionado.Id);
+                        cargar();
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("No se ha seleccionado ningún artículo para eliminar");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -117,10 +141,11 @@ namespace TPFinalNivel2_RodrigoURIBARRI
 
         private void btnDetalle_Click(object sender, EventArgs e)
         {
+            this.Hide();
             frmDetalle artDetallado = new frmDetalle();
             Articulo s = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
             artDetallado.articuloDetallado(s.Id.ToString(), s.Codigo,s.Nombre,s.Descripcion,s.Marca.ToString(), s.Categoria.ToString(),s.Precio.ToString("0.00"),s.UrlImagen);
-            artDetallado.ShowDialog();       
+            artDetallado.ShowDialog();
         }
 
         private void txtFiltroRapido_TextChanged(object sender, EventArgs e)
@@ -129,7 +154,7 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             string filtro = txtFiltroRapido.Text;
 
             if (filtro.Length >= 3)
-                ListaFiltro = listaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Codigo.ToUpper().Contains(filtro.ToUpper()) || x.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper()) || x.Categoria.Descipcion.ToUpper().Contains(filtro.ToUpper()));
+                ListaFiltro = listaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Codigo.ToUpper().Contains(filtro.ToUpper()) || x.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper()) || x.Categoria.Descripcion.ToUpper().Contains(filtro.ToUpper()));
             else
                 ListaFiltro = listaArticulos;
 
@@ -146,7 +171,13 @@ namespace TPFinalNivel2_RodrigoURIBARRI
                 return;
             string campo = cboCampo.SelectedItem.ToString();
             string criterio = cboCriterio.SelectedItem.ToString();
-            string filtro = txtFiltro.Text;
+            string filtro;
+            if (cboCampo.Text == "Marca")
+                filtro = criterio;
+            else if (cboCampo.Text == "Categoría")
+                filtro = criterio;
+            else
+                filtro = txtFiltro.Text;
             listaFiltrada = negocio.filtrar(campo,criterio,filtro);
             dgvArticulos.DataSource = listaFiltrada;
            
@@ -154,26 +185,28 @@ namespace TPFinalNivel2_RodrigoURIBARRI
 
         private bool validarBusqueda()
         {
-            if(cboCampo.SelectedIndex < 0)
+            if (cboCampo.SelectedIndex < 0)
             {
-                MessageBox.Show("¡Debe seleccionar el campo de búsqueda!");
+                lblCampo.ForeColor = Color.Red;
+                lblCampoRequerido.Visible = true;
                 return true;
             }
-            if(cboCriterio.SelectedIndex < 0)
+            if (cboCriterio.SelectedIndex < 0)
             {
-                MessageBox.Show("¡Debe seleccionar el criterio de búsqueda!");
+                lblCriterio.ForeColor = Color.Red;
+                lblCriterioRequerido.Visible = true;
                 return true;
             }
-            if(cboCampo.SelectedItem.ToString() == "Precio")
+            if (cboCampo.SelectedItem.ToString() == "Precio")
             {
                 if (string.IsNullOrEmpty(txtFiltro.Text))
                 {
-                    MessageBox.Show("Para el campo precio es necesario que complete el filtro con números");
+                    lblFiltroRequerido.Visible = true;
                     return true;
                 }
                 if (!(helper.soloNumeros(txtFiltro.Text)))
                 {
-                    MessageBox.Show("Solo se admiten números para filtrar por Precio");
+                    MessageBox.Show("Solo puede ingresar números para filtrar por Precio");
                     return true;
                 }
             }
@@ -190,6 +223,18 @@ namespace TPFinalNivel2_RodrigoURIBARRI
                 cboCriterio.Items.Add("Igual a");
                 cboCriterio.Items.Add("Mayor a");
             }
+            else if (opcion == "Marca")
+            {
+                cboCriterio.Items.Clear();
+                MarcaNegocio negocio = new MarcaNegocio();
+                cboCriterio.Items.AddRange(negocio.listarMarcas().ToArray());
+            }
+            else if (opcion == "Categoría")
+            {
+                cboCriterio.Items.Clear();
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                cboCriterio.Items.AddRange(negocio.listarCategorias().ToArray());
+            }
             else
             {
                 cboCriterio.Items.Clear();
@@ -204,6 +249,26 @@ namespace TPFinalNivel2_RodrigoURIBARRI
             cargar();
             txtFiltro.Text = "";
             cboCriterio.SelectedItem = null;
+        }
+
+        private void cboCampo_SelectedValueChanged_2(object sender, EventArgs e)
+        {
+            lblCampo.ForeColor = Color.DarkBlue;
+            lblCampoRequerido.Visible = false;
+        }
+
+        private void cboCriterio_SelectedValueChanged_1(object sender, EventArgs e)
+        {
+            lblCriterio.ForeColor = Color.DarkBlue;
+            lblCriterioRequerido.Visible = false;
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            if(txtFiltro.Text.Length > 0)
+            {
+                lblFiltroRequerido.Visible = false;
+            }
         }
     }
 }
